@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="page_title">page title\n</string>
+    <string name="film_poster">film poster</string>
+    <string name="poster_2">poster_2</string>
+    <string name="poster_3">poster_3</string>
+    <string name="poster_4">poster 4\n</string>
+    <string name="picher">picher</string>
+    <string name="floating_button">floating button</string>
+    <string name="favorites">favorites</string>
+    <string name="watch_later">watch_later</string>
+    <string name="selection">selection</string>
+    <string name="settings">settings</string>
+    <string name="disclaimer">disclimer</string>
+</resources>
