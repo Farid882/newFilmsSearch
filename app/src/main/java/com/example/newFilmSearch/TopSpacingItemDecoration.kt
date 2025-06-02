@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.newFilmSearch
 
 import android.content.res.Resources
 import android.graphics.Rect
