@@ -1,9 +1,10 @@
-package com.example.myapplication
+package com.example.newFilmSearch
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.TextView
 import android.widget.ImageView
+import com.example.myapplication.R
 
 class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     //Привязываем view из layout к переменным
