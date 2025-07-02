@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -19,10 +18,18 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/page_title"
             app:navigationIcon="@drawable/ic_round_menu"
             app:menu="@menu/toolbar_menu"
             style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="670dp"
+            android:background="#EFD9D9">
+
+        </androidx.fragment.app.FragmentContainerView>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,8 +37,10 @@
         android:id="@+id/fragment_placeholder"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/app_bar_layout"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_navigation"/>
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
