@@ -11,7 +11,6 @@ import com.example.newFilmSearch.HomeFragment
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -20,18 +19,28 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
         initFragment()
     }
+    fun launchDetailsFragment(film: Film) {
+        //Создаем "посылку"
+        val bundle = Bundle()
+        //Кладем наш фильм в "посылку"
+        bundle.putParcelable("film", film)
+        //Кладем фрагмент с деталями в перменную
+        val fragment = DetailsFragment()
+        //Прикрепляем нашу "посылку" к фрагменту
+        fragment.arguments = bundle
 
-    private fun initFragment() {
+        //Запускаем фрагмент
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
 
-    fun launchDetailsFragment(film: Film) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_placeholder, DetailsFragment())
+    private fun initFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_container, HomeFragment())
             .addToBackStack(null)
             .commit()
     }
@@ -67,23 +76,6 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
-        }
-        fun launchDetailsFragment(film: Film) {
-            //Создаем "посылку"
-            val bundle = Bundle()
-            //Кладем наш фильм в "посылку"
-            bundle.putParcelable("film", film)
-            //Кладем фрагмент с деталями в перменную
-            val fragment = DetailsFragment()
-            //Прикрепляем нашу "посылку" к фрагменту
-            fragment.arguments = bundle
-
-            //Запускаем фрагмент
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_placeholder, fragment)
-                .addToBackStack(null)
-                .commit()
         }
     }
 }
