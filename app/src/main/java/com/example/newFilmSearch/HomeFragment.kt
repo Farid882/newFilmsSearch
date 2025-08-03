@@ -102,7 +102,6 @@ class HomeFragment : Fragment() {
             filmsAdapter =
                 FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
                     override fun click(film: Film) {
-                            //(requireActivity() as MainActivity).launchDetailsFragment(film)
                         val fragment = DetailsFragment()
                         val bundle = Bundle()
                         bundle.putParcelable("film", film)
