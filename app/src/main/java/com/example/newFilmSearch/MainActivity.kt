@@ -1,15 +1,18 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.newFilmSearch.FavoritesFragment
 import com.example.newFilmSearch.Film
 import com.example.newFilmSearch.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var fragmentFavorites: FavoritesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,32 +22,16 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
         initFragment()
     }
-    fun launchDetailsFragment(film: Film) {
-        //Создаем "посылку"
-        val bundle = Bundle()
-        //Кладем наш фильм в "посылку"
-        bundle.putParcelable("film", film)
-        //Кладем фрагмент с деталями в перменную
-        val fragment = DetailsFragment()
-        //Прикрепляем нашу "посылку" к фрагменту
-        fragment.arguments = bundle
-
-        //Запускаем фрагмент
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
 
     private fun initFragment() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container, HomeFragment())
-            .addToBackStack(null)
-            .commit()
+            .addToBackStack(null).commit()
     }
 
+    private fun details_fab_share(){
+    }
     private fun initNavigation() {
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -56,25 +43,37 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        binding.bottomNavigation.setOnNavigationItemSelectedListener {
-
+        binding.bottomNavigation.setOnItemReselectedListener {
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
+            }
+            binding.bottomNavigation.setOnItemSelectedListener {
 
-                R.id.watch_later -> {
-                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
-                    true
+                when (it.itemId) {
+                    R.id.favorites -> {
+                        Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+
+                    R.id.watch_later -> {
+                        Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+
+                    R.id.selections -> {
+                        Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+
+                    else -> false
                 }
-
-                R.id.selections -> {
-                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
-                    true
-                }
-
-                else -> false
             }
         }
     }
